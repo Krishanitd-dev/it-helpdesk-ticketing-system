@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Ticket - IT Helpdesk</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+<body class="tickets-page">
+    {% include "navbar.html" %}
+        <main class="tickets-container">
+
+        <section class="ticket-header">
+        <h1>Create Your Ticket</h1> 
+        
+        <p> Submit a support request and our IT team will assist you.</p>
+       
+      
+        </section> 
+
+        <section class="ticket-card"> 
+
+        <form action="/tickets/create" method="POST"> 
+            <h1>Create a New Ticket</h1>
+           <br>
+                <div class="ticket-form-group">
+                
+                <label for="subject"> Subject <span>*</span>
+                </label>
+            <input type="text" id="subject" name="subject" 
+            placeholder="Enter the subject of your issue" required >
+        </div> 
+
+
+        <div class="ticket-form-row"> 
+        <div class="ticket-form-group"> 
+            <label for="category"> 
+                Category <span>* </span>
+        </label> 
+
+
+        <select id="category" name="category" required > 
+            <option value=""> Select category </option> 
+            <option value="hardware"> Hardware </option>
+            <option value="software"> Software </option> 
+            <option value="network"> Network </option> 
+            <option value="account"> 
+                Account / Login </option>
+            <option value="email"> Email </option>
+            <option value="security">
+            Security </option> 
+            <option value="other"> Other </option>
+            </select>
+        </div>
+        
+        
+        
+        <div class="ticket-form-group"> 
+            <label for="priority"> Priority <span>*</span> 
+            </label> 
+            
+            <select id="priority" name="priority" required > <option value="">
+                    Select priority </option> <option value="low"> Low </option>
+                    <option value="medium"> Medium </option> 
+                    <option value="high"> High </option> 
+                    <option value="urgent"> Urgent </option> 
+                </select> 
+            </div> 
+        </div> 
+                        
+        <div class="ticket-form-group"> 
+        <label for="description"> Description <span>*</span> 
+        </label> 
+
+        <textarea id="description" name="description" 
+        placeholder="Describe your issue in detail..." required >
+        </textarea> 
+    </div> 
+                
+    <div class="ticket-buttons"> 
+        <button type="submit" class="ticket-submit"> Submit Ticket 
+        </button> 
+
+        <a href="/dashboard" class="ticket-cancel"> 
+        Cancel </a> 
+        </div> 
+        
+    </form>
+    </section> 
+    </main> 
+</body> 
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Ticket - Helpdesk</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="tickets-page">
+    {% include "navbar.html" %}
+    <main class="tickets-container">
+      
+        <section class="page-header">
+            <h1>View Support Ticket</h1>
+            <p>Review the customer's issue and respond to the ticket.</p>
+        </section>
+
+       
+        <section class="ticket-card">
+            <div class="ticket-header">
+                <div>
+                    <h2>Ticket #{{ ticket[0] }}</h2>
+                    <h3>{{ ticket[1] }}</h3>
+                </div>
+                <div class="ticket-status">
+                    <span>{{ ticket[4] }}</span>
+                </div>
+            </div>
+
+
+            <div class="ticket-details">
+                <div class="ticket-detail">
+                    <strong>Customer</strong>
+                    <span>{{ ticket[6] }}</span>
+                </div>
+              <div class="ticket-detail">
+                    <strong>Category</strong>
+                 <span>{{ ticket[2] }}</span>
+             </div>
+             <div class="ticket-detail">
+                   <strong>Priority</strong>
+                <span>{{ ticket[3] }}</span>
+                </div>
+  <div class="ticket-detail">
+           <strong>Created</strong>
+        <span>{{ ticket[5] }}</span>
+                </div>
+            </div>
+
+
+            {% if ticket[8] %}
+    <div class="ticket-message">
+        <h3>Helpdesk Response</h3>
+
+        <p>
+            {{ ticket[8] }}
+        </p>
+    </div>
+{% endif %}
+
+        </section>
+
+
+      
+        <section class="ticket-card reply-card">
+            <h2>Reply to Customer</h2>
+           {% if error %}
+                <div class="error-message">
+             {{ error }}
+                </div>
+           {% endif %}
+
+            <form
+                action="/helpdesk/ticket/{{ ticket[0] }}/reply"
+                method="POST"
+            >
+
+                <div class="form-group">
+                    <label for="reply">
+                    Your Reply
+                 </label>
+                 <textarea
+                      id="reply"
+                     name="reply"
+                    rows="6"
+                     placeholder="Type your response to the customer..."
+                    required
+                    ></textarea>
+
+                </div>
+
+                <div class="ticket-actions">
+                    <a
+                    href="/helpdesk/dashboard"
+                        class="dashboard-button secondary-button"
+                    >
+                        Back to Dashboard
+                    </a>
+                    <button
+                    type="submit"
+                      class="dashboard-button"
+                 >
+                 Send Reply
+       </button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>
+
