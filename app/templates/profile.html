@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - IT Helpdesk</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="profile-page">
+
+    {% include "navbar.html" %}
+
+    <main class="profile-container">
+
+        <!-- Profile Header -->
+        <section class="profile-header">
+            <h1>My Profile</h1>
+            <p>View and manage your account information.</p>
+        </section>
+
+
+        <!-- Profile Information -->
+        <section class="profile-card">
+
+            <div class="profile-avatar">
+                {{ email[0]|upper }}
+            </div>
+
+            <div class="profile-info">
+
+                <h2>Profile Information</h2>
+
+                <div class="profile-info-row">
+                    <span class="profile-label">Email</span>
+                    <span class="profile-value">{{ email }}</span>
+                </div>
+
+                <div class="profile-info-row">
+                    <span class="profile-label">User ID</span>
+                    <span class="profile-value">{{ user_id }}</span>
+                </div>
+
+                <div class="profile-info-row">
+                    <span class="profile-label">Account Type</span>
+                    <span class="profile-value">Customer</span>
+                </div>
+
+                <div class="profile-info-row">
+                    <span class="profile-label">Account Status</span>
+                    <span class="profile-value">Active</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Ticket Summary -->
+        <section class="profile-card profile-tickets">
+
+            <h2>My Tickets</h2>
+
+            <div class="profile-ticket-stats">
+
+                <div class="profile-stat">
+                    <p class="profile-stat-number">{{ total_tickets }}</p>
+                    <span class="profile-stat-label">Total Tickets</span>
+                </div>
+
+                <div class="profile-stat">
+                    <p class="profile-stat-number">{{ open_tickets }}</p>
+                    <span class="profile-stat-label">Open Tickets</span>
+                </div>
+
+                <div class="profile-stat">
+                    <p class="profile-stat-number">{{ closed_tickets }}</p>
+                    <span class="profile-stat-label">Closed Tickets</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Need Help -->
+        <section class="profile-card profile-help">
+
+            <h2>Need Help?</h2>
+
+            <p>
+                If you are experiencing an IT issue, create a support ticket
+                and our Helpdesk Team will assist you.
+            </p>
+
+            <a href="/tickets" class="profile-ticket-button">
+                Create a Ticket
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

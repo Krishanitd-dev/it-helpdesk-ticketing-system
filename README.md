@@ -39,6 +39,7 @@ main:
 pip install fastapi uvicorn jinja2 python-multipart
 pip install "pwdlib[argon2]"
 pip install email-validator
+pip install "psycopg[binary]"
 
 later:
 pip install itsdangerous
@@ -108,3 +109,13 @@ Login page
 ![alt text](image.png)
 ![alt text](image-1.png)
 
+Steps
+Customer Account Login
+Customer creates ticket
+Ticket saved in PostgreSQL
+Dashboard shows ticket count
+Customer can click/view a ticket
+Helpdesk can see all tickets
+Helpdesk can reply
+Customer can see the reply
+Ticket status changes: Open → In Progress → Closed

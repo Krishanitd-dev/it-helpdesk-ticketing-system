@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details - IT Helpdesk</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="tickets-page">
+    {% include "navbar.html" %}
+    <main class="tickets-container">
+        <section class="ticket-header">
+            <h1>Ticket Details</h1>
+            <p>
+                View your support request and helpdesk response.
+            </p>
+
+        </section>
+        <section class="ticket-card">
+            <h1>
+                Ticket #{{ ticket[0] }}
+            </h1>
+            <br>
+            <div class="ticket-form-group">
+
+                <label>
+                    Subject
+                </label>
+                <div class="ticket-detail-value">
+                    {{ ticket[1] }}
+                </div>
+            </div>
+
+            <div class="ticket-form-row">
+                <div class="ticket-form-group">
+                    <label>
+                        Category
+                    </label>
+                    <div class="ticket-detail-value">
+                        {{ ticket[2] }}
+                    </div>
+                </div>
+
+
+                <div class="ticket-form-group">
+                    <label>
+                        Priority
+                    </label>
+                    <div class="ticket-detail-value">
+                        {{ ticket[3] }}
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="ticket-form-row">
+
+                <div class="ticket-form-group">
+                <label>
+                       Status
+                   </label>
+                    <div class="ticket-detail-value">
+                        {{ ticket[4] }}
+                    </div>
+                </div>
+
+             <div class="ticket-form-group">
+                    <label>
+                        Created
+                  </label>
+                  <div class="ticket-detail-value">
+                        {{ ticket[5] }}
+                 </div>
+                </div>
+            </div>
+
+
+            <div class="ticket-form-group">
+                <label>
+                    Your Message
+                </label>
+                <div class="ticket-description">
+                    {{ ticket[6] }}
+                </div>
+            </div>
+
+            <div class="ticket-form-group">
+                <label>
+                    Helpdesk Response
+                </label>
+                {% if ticket[7] %}
+                    <div class="ticket-response">
+                        {{ ticket[7] }}
+                    </div>
+                {% else %}
+                    <div class="ticket-no-response">
+                        The helpdesk has not responded to this ticket yet.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+           
+            <div class="ticket-buttons">
+                <a
+                    href="/dashboard"
+                    class="ticket-cancel"
+                >
+                    Back to Dashboard
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

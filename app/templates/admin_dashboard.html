@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Helpdesk Dashboard</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-page">
+    {% include "navbar.html" %}
+    <main class="dashboard-container">
+        
+        <section class="welcome-section">
+            <h1>Helpdesk Dashboard</h1>
+            <p>
+                Welcome to the IT Helpdesk.
+            </p>
+            <p>
+                Manage and respond to customer support tickets
+                from your dashboard.
+            </p>
+        </section>
+
+      
+        <section class="dashboard-cards">
+            <div class="dashboard-card">
+             <h3>Open Tickets</h3>
+            <p class="card-number">
+                {{ open_tickets }}
+            </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+                <h3>In Progress</h3>
+                <p class="card-number">
+                    {{ in_progress_tickets }}
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+                <h3>Closed Tickets</h3>
+                <p class="card-number">
+                    {{ closed_tickets }}
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- All Customer Tickets -->
+        <section class="recent-tickets">
+            <h2>All Customer Tickets</h2>
+            {% if tickets %}
+                {% for ticket in tickets %}
+                <div class="recent-ticket-item">
+                    <div class="recent-ticket-info">
+                <h3>
+            #{{ ticket[0] }} - {{ ticket[1] }}
+           </h3>
+
+            <p>
+                Customer: {{ ticket[6] }}
+            </p>
+
+             <p>
+              Category: {{ ticket[2] }}
+             |
+            Priority: {{ ticket[3] }}
+            </p>
+
+          <small>
+          Created: {{ ticket[5] }}
+      </small>
+
+ </div>
+
+
+     <div class="recent-ticket-status">
+
+           {{ ticket[4] }}
+
+              <br>
+
+               <a href="/helpdesk/ticket/{{ ticket[0] }}">
+               View Ticket
+           </a>
+
+      </div>
+        </div>
+            {% endfor %}
+            {% else %}
+                <div class="empty-tickets">
+             <p>
+             No customer tickets found.
+                    </p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
+
