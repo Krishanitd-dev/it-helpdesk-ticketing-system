@@ -1,35 +1,132 @@
 
-🚧 Currently under development.  
+## IT Helpdesk Ticket Management System
 
+A full-stack IT Helpdesk Ticket Management System developed using Python, FastAPI, PostgreSQL, HTML, CSS, and JavaScript.
 
-## AI-Powered IT Helpdesk System 
+The system provides separate functionality for Employees and Support Staff, allowing employees to submit and track IT support requests while support staff can manage, update, and respond to tickets.
 
-An AI-powered full-stack IT Helpdesk Ticketing System built with Python and FastAPI, featuring AI-assisted ticket classification, priority suggestions, and professional response generation.
+## Users Types
+The system supports two types of users:
 
-Users (Two types)
 Employee
+
+Employees can:
+
+Register and log in
+View their dashboard
+Create support tickets
+View their own tickets
+View ticket details
+View support responses
+Close their tickets
+Track ticket status
 Support Staff
 
-Employee can:
-Log in
-View dashboard
-Create support ticket
-View own tickets
-View ticket details
-Add comments
-Close their ticket
-Receive AI-assisted ticket classification and priority suggestions
+Support staff can:
 
-Support Staff can:
-Log in
-View all tickets
-View ticket details
-Change ticket status
-Change priority
+Log in through the Helpdesk portal
+View all customer tickets
+View individual ticket details
+Respond to customer tickets
+Update ticket status
+Manage ticket priority
 Assign tickets
 Add resolution notes
-Generate AI-assisted response suggestions 
-Generate AI ticket summaries
+
+
+## Current Features
+User Registration
+
+Email validation
+Duplicate email checking
+Password validation
+Password confirmation
+Secure password hashing
+User account creation
+
+Authentication & Sessions
+
+Customer login
+Support staff login
+Session-based authentication
+Separate customer and support staff sessions
+Protected pages
+Login error handling
+Logout functionality
+Unauthenticated users are redirected to the appropriate login page
+
+Ticket Management
+
+Create support tickets
+Store tickets in PostgreSQL
+View personal tickets
+View all tickets as support staff
+View individual ticket details
+Add support responses
+Update ticket status
+Update ticket priority
+Assign tickets
+Add resolution information
+Close tickets
+
+## Ticket Status
+
+Tickets can move through the following workflow:
+
+Open > In Progress > Closed
+
+
+## System Workflow
+
+#### Employee Workflow
+Employee registers for an account.
+Employee logs in.
+Employee accesses the dashboard.
+Employee creates a support ticket.
+The ticket is stored in PostgreSQL.
+The dashboard displays the employee's tickets.
+Employee can select a ticket to view its details.
+Support staff can respond to the ticket.
+Employee can view the response.
+Employee can close the ticket when the issue is resolved.
+
+#### Support Staff Workflow
+Support staff logs in through the Helpdesk login.
+Support staff accesses the Helpdesk dashboard.
+All customer tickets are displayed.
+Support staff can view individual ticket details.
+Support staff can update the ticket status and priority.
+Support staff can assign tickets.
+Support staff can provide responses and resolution information.
+The employee can view the updated ticket information.
+
+
+## Technology Stack
+
+Backend-
+
+Python
+FastAPI
+PostgreSQL
+Jinja2
+Session Middleware
+
+Frontend -
+
+HTML5
+CSS3
+JavaScript
+Jinja2 Templates
+
+Development Tools -
+Visual Studio Code
+Git
+GitHub
+GitHub Copilot
+
+Deployment -
+Vercel
+
 
 ## installation
 python -m venv venv
@@ -40,81 +137,45 @@ pip install fastapi uvicorn jinja2 python-multipart
 pip install "pwdlib[argon2]"
 pip install email-validator
 pip install "psycopg[binary]"
-
-later:
 pip install itsdangerous
 
 ## Run
 python -m uvicorn app.main:app --reload
 
-## Technology stack
+## Security & Validation
 
-Backend
-    Python
-    FastAPI
-    PostgreSQL 
-    Open AI API
+The system currently includes:
 
-Frontend
-    HTML5
-    React
-    CSS3
-    JavaScript
-    Jinja2
+Server-side email validation
+Duplicate account checking
+Password strength requirements
+Secure password hashing using Argon2
+Password confirmation validation
+Session-based authentication
+Protected customer pages
+Protected support staff pages
+User-specific ticket access
+Session-based user identification
+Logout and session clearing
 
-
-
-Development
-    VS Code
-    Git
-    GitHub
-    GitHub Copilot
-    Vercel
-
-
-
-## features
-Registration
-Login
-SQLite user table
-Session middleware
-user_id stored in session
-Email stored in session
-Protected dashboard
-Logout
-Login error message
-Register link
-User account checking
-AI Ticket Classification 
-AI Suggested Response
-
-
-## Registration Validation
-Email is required and validated.
-backend email validation.
-Duplicate emails are rejected.
-Password must be 8+ characters.
-Requires uppercase, lowercase, and number.
-Password confirmation must match.
-Passwords are securely hashed before storage.
-Protected dashboard using authenticated session.
-User ID and email are stored in the session after login.
-Server uses the session to identify the logged-in user.
-Users without a valid session are redirected to the login page.
-Logout clears the session.
 
 
 Login page 
-![alt text](image.png)
+![alt text](image-2.png)
 ![alt text](image-1.png)
 
-Steps
-Customer Account Login
-Customer creates ticket
-Ticket saved in PostgreSQL
-Dashboard shows ticket count
-Customer can click/view a ticket
-Helpdesk can see all tickets
-Helpdesk can reply
-Customer can see the reply
-Ticket status changes: Open → In Progress → Closed
+![alt text](image-3.png)
+
+
+
+
+## 🚧 Future Development
+
+The following functionality may be added in future development:
+AI-assisted ticket classification
+AI-based priority suggestions
+AI-generated response suggestions
+AI-generated ticket summaries
+Additional reporting and analytics
+Further security and deployment improvements
+
