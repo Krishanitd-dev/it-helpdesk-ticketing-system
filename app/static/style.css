@@ -481,6 +481,7 @@ select {
 
 .ticket-form-group input,
 .ticket-form-group select,
+
 .ticket-form-group textarea {
     width: 100%;
     padding: 12px;
@@ -493,6 +494,26 @@ select {
 .ticket-form-group textarea {
     min-height: 150px;
     resize: vertical;
+}
+.reply-card textarea {
+    width: 100%;
+    min-height: 220px;
+    padding: 15px;
+    border: 1px solid #cbd5dc;
+    border-radius: 8px;
+    background: #f5f8fa;
+    color: #1f2933;
+    font-size: 16px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    resize: vertical;
+    display: block;
+}
+
+.reply-card textarea:focus {
+    outline: none;
+    border-color: #287a43;
+    background: #ffffff;
 }
 
 .ticket-form-row {
@@ -824,4 +845,21 @@ select {
 .close-ticket-button:hover {
     background: #1f6636;
     transform: translateY(-2px);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    color: #ffffff;
+    font-size: 16px;
+    margin: 0;
 }
