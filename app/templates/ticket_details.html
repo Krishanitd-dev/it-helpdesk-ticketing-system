@@ -104,14 +104,42 @@
             </div>
 
            
+                {% if ticket[4] != "Closed" %}
+                   <div class="close-ticket-section">
+             <h3>Close This Ticket</h3>
+            <p>
+        If your issue has been resolved, you can close this ticket.
+        Once closed, the ticket will no longer require further support.
+         </p>
+                <form method="post" action="/tickets/{{ ticket[0] }}/close">
+                <button type="submit" class="close-ticket-button">
+                 ✓ Close Ticket
+             </button>
+            </form>
+
+                </div>
+            {% else %}
+            <div class="ticket-closed-section">
+
+            <h3>Ticket Closed</h3>
+
+            <p>
+          This ticket has been closed. No further action is required.
+        </p>
+
+        </div>
+
+            {% endif %}
+
+
             <div class="ticket-buttons">
-                <a
-                    href="/dashboard"
-                    class="ticket-cancel"
-                >
-                    Back to Dashboard
-                </a>
+
+            <a href="/dashboard" class="ticket-cancel">
+            Back to Dashboard
+            </a>
+
             </div>
+
         </section>
     </main>
 </body>

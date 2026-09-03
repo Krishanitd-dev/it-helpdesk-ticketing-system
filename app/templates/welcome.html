@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk - Welcome</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<div class="login-container welcome-container">
+    <img src="/static/hd.png"
+         alt="IT Helpdesk"
+         class="helpdesk-image">
+    <h1>IT HELP DESK</h1>
+    <p>Helpdesk Support Portal</p>
+    <br>
+    <h2>Welcome to the IT Support System</h2>
+    <p>
+        Get help with your IT issues quickly and easily.
+        Create support tickets, track your requests,
+        and communicate with the IT support team.
+    </p>
+    <p>
+        Please select your account type to continue.
+    </p>
+
+
+    <div class="login-selection">
+
+
+        <a href="/login" class="login-option customer-option">
+            <div class="option-icon">
+                👤
+            </div>
+            <div class="option-text">
+                <strong>Customer Login</strong>
+                <span>Submit and track your IT tickets</span>
+            </div>
+            <div class="arrow">
+                →
+            </div>
+        </a>
+
+
+        
+        <a href="/helpdesk/login" class="login-option admin-option">
+            <div class="option-icon">
+                🛡️
+            </div>
+            <div class="option-text">
+                <strong>Admin Login</strong>
+                <span>Manage tickets and provide support</span>
+            </div>
+            <div class="arrow">
+                →
+            </div>
+
+        </a>
+
+    </div>
+
+    <p class="welcome-footer">
+        IT Helpdesk Management System
+    </p>
+
+</div>
+
+<script src="/static/welcome.js"></script>
+
+</body>
+</html>
