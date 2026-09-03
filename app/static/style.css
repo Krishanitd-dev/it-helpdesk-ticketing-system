@@ -33,13 +33,10 @@ body {
 .navbar {
     width: 100%;
     box-sizing: border-box;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 20px 40px;
-
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 
@@ -49,7 +46,6 @@ body {
 
     z-index: 1000;
 }
-
 .dashboard-container {
     width: 100%;
     max-width: 1200px;
@@ -58,6 +54,143 @@ body {
     box-sizing: border-box;
 }
 
+
+
+.welcome-container {
+    text-align: center;
+}
+
+.welcome-container h2 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.welcome-container > p {
+    line-height: 1.6;
+}
+
+
+
+.login-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+.login-option {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    padding: 18px 20px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+
+    color: #172b3a;
+}
+.login-option.mouse-near {
+    background: #dcefe2;
+    border-color: #90c9a3;
+    box-shadow: 0 10px 25px rgba(40, 122, 67, 0.20);
+}
+
+.login-option.mouse-near .option-text strong,
+.login-option.mouse-near .option-text span,
+.login-option.mouse-near .arrow {
+    color: #287a43;
+}
+
+.login-option:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+}
+
+
+.option-icon {
+    font-size: 32px;
+    width: 50px;
+    text-align: center;
+}
+
+
+.option-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+    margin-left: 12px;
+}
+
+
+.option-text strong {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.option-text span {
+    font-size: 13px;
+    color: #667781;
+}
+
+
+.arrow {
+    font-size: 26px;
+    font-weight: bold;
+
+    transition: transform 0.2s ease;
+}
+
+.login-option:hover .arrow {
+    transform: translateX(5px);
+}
+
+
+
+.welcome-footer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #667781;
+}
+
+
+
+@media (max-width: 600px) {
+    .welcome-container h1 {
+        font-size: 26px;
+    }
+    .welcome-container h2 {
+        font-size: 19px;
+    }
+    .login-option {
+        padding: 15px;
+    }
+    .option-icon {
+        font-size: 27px;
+        width: 40px;
+    }
+    .option-text strong {
+        font-size: 15px;
+    }
+    .option-text span {
+        font-size: 12px;
+    }
+
+}
 
 /* @media 
 (max-width: 768px) {
@@ -221,6 +354,8 @@ select {
 
 .welcome-section h1 {
     margin-bottom: 10px;
+    color: white;
+    text-align: center;
 }
 
 .welcome-section p {
@@ -664,4 +799,29 @@ select {
     background: #f5f8fa;
     color: #7a8a93;
     font-style: italic;
+}
+
+
+
+
+.close-ticket-section h3,
+.close-ticket-section p {
+    color: #287a43;
+}
+
+.close-ticket-button {
+    padding: 11px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #287a43;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.close-ticket-button:hover {
+    background: #1f6636;
+    transform: translateY(-2px);
 }

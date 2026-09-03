@@ -29,6 +29,15 @@ templates = Jinja2Templates(directory="./app/templates")
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
+async def welcome_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="welcome.html"
+    )
+
+
+
+@app.get("/login", response_class=HTMLResponse)
 async def login_page(request: Request):
     return templates.TemplateResponse(
         request=request,
@@ -115,7 +124,7 @@ async def register(
 
     create_user(email, password_hash,created_at)
     return RedirectResponse(
-        url="/",
+        url="/login",
         status_code=303)
 
 @app.get("/dashboard", response_class=HTMLResponse)
@@ -123,10 +132,11 @@ async def dashboard(request: Request):
 
     if "user_id" not in request.session:
         return RedirectResponse(
-            url="/",
+            url="/login",
             status_code=303)
     email = request.session.get("email")
     user_id = request.session.get("user_id")
+
     counts, recent_tickets = get_dashboard_data(user_id)
     open_tickets = counts[0]
     in_progress_tickets = counts[1]
@@ -148,7 +158,7 @@ async def dashboard(request: Request):
 async def tickets(request: Request):
 
     if "user_id" not in request.session:
-        return RedirectResponse( url="/", status_code=303)
+        return RedirectResponse( url="/login", status_code=303)
     email = request.session.get("email")
 
     return templates.TemplateResponse(
@@ -161,7 +171,7 @@ async def my_tickets(request: Request):
 
     if "user_id" not in request.session:
         return RedirectResponse(
-            url="/",
+            url="/login",
             status_code=303
         )
 
@@ -202,7 +212,7 @@ async def view_customer_ticket(request: Request, ticket_id: int):
 
     if "user_id" not in request.session:
         return RedirectResponse(
-            url="/",
+            url="/login",
             status_code=303
         )
 
@@ -255,7 +265,7 @@ def create_ticket(
 ):
     if "user_id" not in request.session:
         return RedirectResponse(
-            url="/",
+            url="/login",
             status_code=303
         )
 
@@ -296,7 +306,7 @@ async def profile(request: Request):
 
     if "user_id" not in request.session:
         return RedirectResponse(
-            url="/",
+            url="/login",
             status_code=303
         )
 
@@ -322,6 +332,13 @@ async def logout(request: Request):
     request.session.clear()
     return RedirectResponse(
         url="/",
+        status_code=303)
+
+@app.get("/admin/logout")
+def admin_logout(request: Request):
+    request.session.clear()
+    return RedirectResponse(
+        url="/", 
         status_code=303)
 
 @app.get("/helpdesk/login", response_class=HTMLResponse)
@@ -381,11 +398,35 @@ async def helpdesk_dashboard(request: Request):
 
     tickets = get_all_tickets()
 
+    # Count tickets by status
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT
+            COUNT(*) FILTER (WHERE status = 'Open'),
+            COUNT(*) FILTER (WHERE status = 'In Progress'),
+            COUNT(*) FILTER (WHERE status = 'Closed')
+        FROM tickets
+    """)
+
+    counts = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    open_tickets = counts[0]
+    in_progress_tickets = counts[1]
+    closed_tickets = counts[2]
+
     return templates.TemplateResponse(
         request=request,
         name="admin_dashboard.html",
         context={
-            "tickets": tickets
+            "tickets": tickets,
+            "open_tickets": open_tickets,
+            "in_progress_tickets": in_progress_tickets,
+            "closed_tickets": closed_tickets
         }
     )
 
@@ -464,5 +505,39 @@ async def helpdesk_reply(
 
     return RedirectResponse(
         url=f"/helpdesk/ticket/{ticket_id}",
+        status_code=303
+    )
+
+@app.post("/tickets/{ticket_id}/close")
+async def close_customer_ticket(
+    request: Request,
+    ticket_id: int
+):
+
+    if "user_id" not in request.session:
+        return RedirectResponse(
+            url="/login",
+            status_code=303
+        )
+
+    user_id = request.session["user_id"]
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE tickets
+        SET status = 'Closed'
+        WHERE id = %s
+        AND user_id = %s
+    """, (ticket_id, user_id))
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return RedirectResponse(
+        url=f"/tickets/{ticket_id}",
         status_code=303
     )

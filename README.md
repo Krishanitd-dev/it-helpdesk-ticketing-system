@@ -52,7 +52,7 @@ python -m uvicorn app.main:app --reload
 Backend
     Python
     FastAPI
-    SQLite
+    PostgreSQL 
     Open AI API
 
 Frontend
@@ -62,15 +62,14 @@ Frontend
     JavaScript
     Jinja2
 
-Testing
-    pytest
-    FastAPI TestClient
+
 
 Development
     VS Code
     Git
     GitHub
     GitHub Copilot
+    Vercel
 
 
 
